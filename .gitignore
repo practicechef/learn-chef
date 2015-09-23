@@ -4,4 +4,5 @@
 # Ignore Chef key files and secrets
 ###
 .chef
+.vagrant
 #.chef/encrypted_data_bag_secret
