@@ -69,4 +69,9 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
+  config.vm.provision  :chef_client do |chef|
+  chef.chef_server_url = "https://api.opscode.com/organizations/chef-one"
+  chef.validation_key_path = "./.chef/chef-one-validator.pem"
+  chef.validation_client_name = "chef-one-validator"
+  chef.node_name = "Vagrant_vm" 
 end
