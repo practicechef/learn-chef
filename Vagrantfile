@@ -12,20 +12,19 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu-12.04"
-  config.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box"
-  
-  config.vm.provision  :chef_client do |chef|
-  chef.chef_server_url = "https://api.opscode.com/organizations/chef-one"
-  chef.validation_key_path = "/c/opscode/chef-repo/.chef/chef-one-validator.pem"
-  chef.validation_client_name = "chef-one-validator"
-  chef.node_name = "Vagrant_vm"
-  
+  config.vm.box="ubuntu-12.04"
+  config.vm.box_url="http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box"
+
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
   # config.vm.box_check_update = false
-
+	  config.vm.provision  :chef_client do |chef|
+  chef.chef_server_url = "https://api.opscode.com/organizations/chef-one"
+  chef.validation_key_path = ".chef/chef-one-validator.pem"
+  chef.validation_client_name = "chef-one-validator"
+  chef.node_name = "Vagrant_vm" 
+  end
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
@@ -75,5 +74,4 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
-   
 end
