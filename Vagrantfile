@@ -14,12 +14,13 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box="ubuntu-12.04"
   config.vm.box_url="http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box"
-
+  config.vm.network "forwarded_port", guest: 80, host: 8888
+	
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
   # config.vm.box_check_update = false
-	  config.vm.provision  :chef_client do |chef|
+  config.vm.provision  :chef_client do |chef|
   chef.chef_server_url = "https://api.opscode.com/organizations/chef-one"
   chef.validation_key_path = ".chef/chef-one-validator.pem"
   chef.validation_client_name = "chef-one-validator"
